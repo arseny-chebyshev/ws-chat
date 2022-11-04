@@ -1,0 +1,20 @@
+{% extends 'base.html' %}
+{% block content %}
+  <div class='container'>
+    <div class="text-center">
+    <h2>Выберите / Создайте чат</h2>
+    <div>
+    {% for chat in chats %}
+        <div>
+            <a href="{% url 'chat:chatbox' chat.name %}">{{ chat.name }}</a>
+        </div>
+    {% endfor %}
+    </div>
+    <form method="post">
+        {% csrf_token %}
+        {{ chat_form.as_p }}
+        <button type="submit">Создать</button>
+    </form>
+    </div>
+  </div>
+{% endblock %}
